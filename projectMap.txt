@@ -3,11 +3,9 @@ License: GPLv.3.
 
 gui - Qt/QML application that displays overlay keyboard
 
-logics - mouse events reader. this util must be started under root. This reads touch-screen events, then generates corresponding events to virtual keyboard and write corresponding commands in ~/.codongo-kb.fifo for gui.
+logics - mouse events reader. this util must be started under root. This reads touch-screen events, then generates corresponding events to virtual keyboard and write corresponding commands in ~/.codongo-kb.fifo for gui and to codongo input device (to map on codongo virtual keyboard and codongo virtual mouse).
 
-codongokb - virtual keyboard device (kernel module). Codongo writes events there.
-
-codongomice - virtual mouse (touchpad) device (kernel module). Codongo writes events there.
+codongo_km - kernel module (loadable): Virtual mouse (touchpad) device, virtual keyboard device and codongo input device (all on one kernel module). Codongo writes events there.
 
 
 //mknod
