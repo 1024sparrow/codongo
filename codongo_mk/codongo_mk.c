@@ -7,7 +7,7 @@
 #include <linux/uaccess.h>
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Vasilyev Boris");
+MODULE_AUTHOR("Vasilyev Boris <1024sparrow@gmail.com>");
 MODULE_DESCRIPTION("Codongo devices: virtual keyboard and codongo input device.");
 MODULE_VERSION("0.01");
 
@@ -36,8 +36,16 @@ static int input_release(struct inode *, struct file *);
 static ssize_t input_read(struct file *, char *, size_t, loff_t *);
 static ssize_t input_write(struct file *, const char *, size_t, loff_t *);
 
-static int mice_major_num, vkb_major_num, input_major_num;
-static int device_open_count = 0;
+static int
+	mice_major_num,
+	vkb_major_num,
+	input_major_num
+;
+static int
+	mice_open_count = 0,
+	vkb_open_count = 0,
+	input_open_count = 0
+;
 static char msg_buffer[MSG_BUFFER_LEN];
 static char *msg_ptr;
 
@@ -154,11 +162,11 @@ static ssize_t input_write(struct file *flip, const char *buffer, size_t len, lo
 static int mice_open(struct inode *inode, struct file *file)
 {
 	/* If device is open, return busy */
-	if (device_open_count)
+	if (mice_open_count)
 	{
 		return -EBUSY;
 	}
-	device_open_count++;
+	mice_open_count++;
 	try_module_get(THIS_MODULE);
 	return 0;
 }
@@ -167,11 +175,11 @@ static int mice_open(struct inode *inode, struct file *file)
 static int vkb_open(struct inode *inode, struct file *file)
 {
 	/* If device is open, return busy */
-	if (device_open_count)
+	if (vkb_open_count)
 	{
 		return -EBUSY;
 	}
-	device_open_count++;
+	vkb_open_count++;
 	try_module_get(THIS_MODULE);
 	return 0;
 }
@@ -180,11 +188,11 @@ static int vkb_open(struct inode *inode, struct file *file)
 static int input_open(struct inode *inode, struct file *file)
 {
 	/* If device is open, return busy */
-	if (device_open_count)
+	if (input_open_count)
 	{
 		return -EBUSY;
 	}
-	device_open_count++;
+	input_open_count++;
 	try_module_get(THIS_MODULE);
 	return 0;
 }
@@ -193,7 +201,7 @@ static int input_open(struct inode *inode, struct file *file)
 static int mice_release(struct inode *inode, struct file *file)
 {
 	/* Decrement the open counter and usage count. Without this, the module would not unload. */
-	device_open_count--;
+	mice_open_count--;
 	module_put(THIS_MODULE);
 	return 0;
 }
@@ -202,7 +210,7 @@ static int mice_release(struct inode *inode, struct file *file)
 static int vkb_release(struct inode *inode, struct file *file)
 {
 	/* Decrement the open counter and usage count. Without this, the module would not unload. */
-	device_open_count--;
+	vkb_open_count--;
 	module_put(THIS_MODULE);
 	return 0;
 }
@@ -211,7 +219,7 @@ static int vkb_release(struct inode *inode, struct file *file)
 static int input_release(struct inode *inode, struct file *file)
 {
 	/* Decrement the open counter and usage count. Without this, the module would not unload. */
-	device_open_count--;
+	input_open_count--;
 	module_put(THIS_MODULE);
 	return 0;
 }
