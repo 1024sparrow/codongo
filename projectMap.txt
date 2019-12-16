@@ -14,3 +14,10 @@ insmod
 https://www.kernel.org/doc/Documentation/input/input.txt -- substitution in X11
 
 https://www.kernel.org/doc/html/v4.12/input/uinput.html -- how to emulate kb&mouse events (without own kernel module (inventing a wheel))
+
+==============================================================
+
+gui - it's only program.
+
+MouseListener - listen mouse (touch-screen events)
+BackEnd - pass commands to QML.

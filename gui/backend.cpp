@@ -1,20 +1,33 @@
 #include "backend.h"
+#include "mouselistener.h"
 
-  BackEnd::BackEnd(QObject *parent) :
-	  QObject(parent)
-  {
-  }
+#include <QApplication>
+#include <QDesktopWidget>
 
-  QString BackEnd::userName()
-  {
-	  return m_userName;
-  }
+BackEnd::BackEnd(QObject *parent) :
+	QObject(parent)
+{
+	{
+		auto *desktopWidget = QApplication::desktop();
+		_settings.screenWidth = desktopWidget->width();
+		_settings.screenHeight = desktopWidget->height();
+	}
 
-  void BackEnd::setUserName(const QString &userName)
-  {
-	  if (userName == m_userName)
-		  return;
+	_mouseListener = new MouseListener(&_settings, this);
 
-	  m_userName = userName;
-	  emit userNameChanged();
-  }
+	_mouseListener->start();
+}
+
+QString BackEnd::userName()
+{
+	return m_userName;
+}
+
+void BackEnd::setUserName(const QString &userName)
+{
+	if (userName == m_userName)
+		return;
+
+	m_userName = userName;
+	emit userNameChanged();
+}

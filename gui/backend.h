@@ -1,25 +1,30 @@
 #ifndef BACKEND_H
- #define BACKEND_H
+#define BACKEND_H
 
- #include <QObject>
- #include <QString>
+#include <QObject>
+#include <QString>
 
- class BackEnd : public QObject
- {
-	 Q_OBJECT
-	 Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
+#include "commonsettings.h"
 
- public:
-	 explicit BackEnd(QObject *parent = nullptr);
+class MouseListener;
+class BackEnd : public QObject
+{
+	Q_OBJECT
+	Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
 
-	 QString userName();
-	 void setUserName(const QString &userName);
+public:
+	explicit BackEnd(QObject *parent = nullptr);
 
- signals:
-	 void userNameChanged();
+	QString userName();
+	void setUserName(const QString &userName);
 
- private:
-	 QString m_userName;
- };
+signals:
+	void userNameChanged();
 
- #endif // BACKEND_H
+private:
+	QString m_userName;
+	MouseListener *_mouseListener;
+	CommonSettings _settings;
+};
+
+#endif // BACKEND_H

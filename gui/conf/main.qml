@@ -12,20 +12,20 @@ ApplicationWindow {
 		{
 			title: 'kb',
 			widget: 'kb.qml',
-			mouseEventsProcessor: function(p_event){
-			}
+			/*mouseEventsProcessor: function(p_event){
+			}*/
 		},
 		{
 			title: 'm1',
 			widget: 'm1.qml',
-			mouseEventsProcessor: function(p_event){
-			}
+			/*mouseEventsProcessor: function(p_event){
+			}*/
 		},
 		{
 			title: 'm2',
 			widget: 'm2.qml',
-			mouseEventsProcessor: function(p_event){
-			}
+			/*mouseEventsProcessor: function(p_event){
+			}*/
 		}
 	]
 	property var _mouseEvent: undefined //mouser.mouseEvent
@@ -40,7 +40,7 @@ ApplicationWindow {
 	WorkArea {
 		//
 	}*/
-	MultiPointTouchArea {
+	/*MultiPointTouchArea {
 		id: mouser
 		anchors.fill: parent
 		minimumTouchPoints: 1
@@ -60,7 +60,7 @@ ApplicationWindow {
 			console.log(touch1.objectName, "pressed:", touch1.pressed, touch1.x, touch1.y);
 			console.log(touch2.objectName, "pressed:", touch2.pressed, touch2.x, touch2.y);
 		}
-	}
+	}*/
 
 	on_MouseEventChanged: function() {
 		console.log('clcked');

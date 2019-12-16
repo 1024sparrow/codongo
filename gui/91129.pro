@@ -3,8 +3,11 @@ QT = core widgets qml
 SOURCES += \
     main.cpp \
     mw.cpp \
-    backend.cpp
+    backend.cpp \
+    mouselistener.cpp
 
 HEADERS += \
     mw.h \
-    backend.h
+    backend.h \
+    mouselistener.h \
+    commonsettings.h
