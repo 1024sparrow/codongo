@@ -1,4 +1,5 @@
 #include "mouselistener.h"
+#include "layout.h"
 
 #include <QDebug>
 
@@ -60,7 +61,6 @@ void MouseListener::run()
 
 void MouseListener::processMouseEvent(const State &p_state)
 {
-	//
-
 	_state = p_state;
+	LAYOUTS; // boris here
 }

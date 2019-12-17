@@ -10,4 +10,5 @@ HEADERS += \
     mw.h \
     backend.h \
     mouselistener.h \
-    commonsettings.h
+    commonsettings.h \
+    layout.h
