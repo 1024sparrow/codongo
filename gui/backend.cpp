@@ -1,8 +1,10 @@
 #include "backend.h"
 #include "mouselistener.h"
+#include "layout.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QDebug>
 
 BackEnd::BackEnd(QObject *parent) :
 	QObject(parent)
@@ -14,6 +16,7 @@ BackEnd::BackEnd(QObject *parent) :
 	}
 
 	_mouseListener = new MouseListener(&_settings, this);
+	connect(_mouseListener, SIGNAL(layoutChanged(int)), SLOT(onLayoutChanged(int)));
 
 	_mouseListener->start();
 }
@@ -30,4 +33,10 @@ void BackEnd::setUserName(const QString &userName)
 
 	m_userName = userName;
 	emit userNameChanged();
+}
+
+void BackEnd::onLayoutChanged(int p_layoutIndex)
+{
+	//qDebug() << "qwe:" << p_layoutIndex;
+	Layout layout = LAYOUTS[p_layoutIndex];
 }

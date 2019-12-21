@@ -61,11 +61,11 @@ MouseListener::MouseListener(CommonSettings * const p_settings, QObject *p_paren
 	, _settings(p_settings)
 	, _layoutIndex(LAYOUT_KB)
 {
-	emit layoutChanged(_layoutIndex);
 }
 
 void MouseListener::run()
 {
+	emit layoutChanged(_layoutIndex);
 	int fd, bytes;
 	unsigned char data[3];
 	const char *pDevice = "/dev/input/mouse0";
@@ -137,6 +137,7 @@ Keycode MouseListener::hitButton(int p_x, int p_y)
 
 void MouseListener::processMouseEvent(const MouseEvent &p_mouseEvent)
 {
+	emit layoutChanged(_layoutIndex = LAYOUT_MICE);//
 	if (_mouseEvent.keycode == KEY_MOUSE_AREA)
 	{
 		// boris here 1: Связать BackEnd с сигналом layoutChanged(), отрисовка экранной клавиатуры по конфе (layout.h)

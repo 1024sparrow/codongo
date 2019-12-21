@@ -21,6 +21,9 @@ public:
 signals:
 	void userNameChanged();
 
+private slots:
+	void onLayoutChanged(int p_layoutIndex);
+
 private:
 	QString m_userName;
 	MouseListener *_mouseListener;
