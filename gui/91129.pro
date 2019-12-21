@@ -4,7 +4,8 @@ SOURCES += \
     main.cpp \
     mw.cpp \
     backend.cpp \
-    mouselistener.cpp
+    mouselistener.cpp \
+    layout.cpp
 
 HEADERS += \
     mw.h \

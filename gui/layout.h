@@ -3,6 +3,7 @@
 
 #include <QList>
 #include <QString>
+#include "keycodes.h"
 
 struct LayoutCell
 {
@@ -29,71 +30,11 @@ enum LayoutIndex
 {
 	LAYOUT_KB = 0,
 	LAYOUT_MICE,
-	//LAYOUT_ADDON, // NumPad and Ins/Del/Home/End etc.
+	LAYOUT_NUMPAD, // NumPad and Ins/Del/Home/End etc.
+	LAYOUT_OPACITY,
 	LAYOUT__COUNT
 };
 
-Layout l1 = {
-	"n",
-	"Normal",
-	2, // width
-	2, // height
-	{ // buttons
-		{ // row 0
-			1, // height
-			{ // cells
-				{
-					{"a", "A"},
-				},
-				{
-					{"b", "B"}
-				}
-			}
-		},
-		{ // row 1
-			1, // height
-			{ // cells
-				{
-					{"c", "C"},
-				},
-				{
-					{"d", "D"}
-				}
-			}
-		}
-	}
-};
-Layout l2 = {
-	"a",
-	"Addon",
-	2, // width
-	2, // height
-	{ // buttons
-		{ // row 0
-			1, // height
-			{ // cells
-				{
-					{"a", "A"},
-					{"a2", "A2"},
-				},
-				{
-					{"b", "B"}
-				}
-			}
-		},
-		{ // row 1
-			1, // height
-			{ // cells
-				{
-					{"c", "C"},
-				},
-				{
-					{"d", "D"}
-				}
-			}
-		}
-	}
-};
-Layout LAYOUTS[LAYOUT__COUNT] = {l1, l2}; // 0 - keyboard, 1 - touchpad
+extern Layout LAYOUTS[LAYOUT__COUNT];
 
 #endif // LAYOUT_H

@@ -1,5 +1,4 @@
 #include "mouselistener.h"
-#include "layout.h"
 
 #include <QDebug>
 
@@ -49,10 +48,14 @@ bool gerCursorPos(int &p_x, int &p_y)
 }
 
 MouseListener::MouseListener(CommonSettings * const p_settings, QObject *p_parent)
-	:QThread(p_parent), _settings(p_settings), _modeTouchpad(0)
+	: QThread(p_parent)
+	, _settings(p_settings)
+	, _modeTouchpad(0)
+	, _layoutIndex(LAYOUT_KB)
 {
 	_mouseEvent.xPos = 0;//CONST_WIDTH / 2;
 	_mouseEvent.yPos = 0;//CONST_HEIGHT / 2;
+	//_mouseEvent.keycode
 	_mouseEvent.bnLeft = false;
 	_mouseEvent.bnRight = false;
 
@@ -110,12 +113,24 @@ Keycode MouseListener::hitButton(int p_x, int p_y)
 	//int indexRow = p_y >
 	printf("x: %i\n", (int)(p_x * koefMiceHor));
 	printf("y: %i\n", (int)(p_y * koefMiceVert));
+	return KEY_1;
 }
 
 void MouseListener::processMouseEvent(const MouseEvent &p_mouseEvent)
 {
-	_mouseEvent = p_mouseEvent;
 	LAYOUTS; // boris here
 
+	if (_mouseEvent.keycode != p_mouseEvent.keycode)
+	{
+		// mouse moving detected
+	}
+
+	Layout layout = LAYOUTS[_layoutIndex];
+
+	int
+		buttonWUnit(CONST_WIDTH / layout.width),
+		buttonHUnit(CONST_HEIGHT / layout.height)
+	;
 	//
+	_mouseEvent = p_mouseEvent;
 }
