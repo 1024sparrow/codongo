@@ -123,6 +123,7 @@ void MouseListener::run()
 
 Keycode MouseListener::hitButton(int p_x, int p_y)
 {
+	// boris here 2
 	Layout layout = LAYOUTS[_layoutIndex];
 	int
 		buttonWUnit(CONST_WIDTH / layout.width),
@@ -139,7 +140,7 @@ void MouseListener::processMouseEvent(const MouseEvent &p_mouseEvent)
 	if (_mouseEvent.keycode == KEY_MOUSE_AREA)
 	{
 		// boris here 1: Связать BackEnd с сигналом layoutChanged(), отрисовка экранной клавиатуры по конфе (layout.h)
-		// boris here 2: добавить в проект эмулятор клавиатуры (генерация событий)
+		// boris here 3: добавить в проект эмулятор клавиатуры (генерация событий)
 		// Реализация эмулятора мыши возможна только при взаимодействии через тачпад (и, соответственно, наличии реализации перехвата реальных координат не через XOrg, а через устройство)
 	}
 	else
