@@ -7,7 +7,7 @@
 
 struct LayoutCell
 {
-	const char * code;
+	Keycode code;
 	QString title; // to display
 };
 
@@ -19,7 +19,6 @@ struct LayoutRow
 
 struct Layout
 {
-	const char *code;
 	QString title;
 	int width = 2;
 	int height = 2;

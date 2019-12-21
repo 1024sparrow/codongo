@@ -47,18 +47,21 @@ bool gerCursorPos(int &p_x, int &p_y)
 	return true;
 }
 
+MouseListener::MouseEvent::MouseEvent()
+{
+	xPos = -1;
+	yPos = -1;
+	keycode = KEY_UNDEFINED;
+	bnLeft = false;
+	bnRight = false;
+}
+
 MouseListener::MouseListener(CommonSettings * const p_settings, QObject *p_parent)
 	: QThread(p_parent)
 	, _settings(p_settings)
-	, _modeTouchpad(0)
 	, _layoutIndex(LAYOUT_KB)
 {
-	_mouseEvent.xPos = 0;//CONST_WIDTH / 2;
-	_mouseEvent.yPos = 0;//CONST_HEIGHT / 2;
-	//_mouseEvent.keycode
-	_mouseEvent.bnLeft = false;
-	_mouseEvent.bnRight = false;
-
+	emit layoutChanged(_layoutIndex);
 }
 
 void MouseListener::run()
@@ -84,21 +87,32 @@ void MouseListener::run()
 			left = data[0] & 0x1;
 			right = data[0] & 0x2;
 			middle = data[0] & 0x4;
-			x = data[1];// & 0x7;
-			//y = ((data[2] & 8) ? -1 : +1) * data[2] & 7;
-			//y = 4 - (data[2] & 0x7);
+			x = data[1];
 			y = - data[2];
-			printf("\t\tx=%d, y=%d, left=%d, middle=%d, right=%d\n", x, y, left, middle, right);
-			int tmp = data[0];
-			//printf("-------%i-----", tmp);
-			tmp = data[1];
-			//printf("==-----%i-----", tmp);
-			MouseEvent mouseEvent;
-			gerCursorPos(mouseEvent.xPos, mouseEvent.yPos);
-			mouseEvent.keycode = hitButton(mouseEvent.xPos, mouseEvent.yPos);
-			mouseEvent.bnLeft = left;
-			mouseEvent.bnRight = right;
-			processMouseEvent(mouseEvent);
+			//printf("\t\tx=%d, y=%d, left=%d, middle=%d, right=%d\n", x, y, left, middle, right);
+
+			if (left || right || _lastMouseEvent.bnLeft || _lastMouseEvent.bnRight)
+			{
+				printf("\t\tx=%d, y=%d, left=%d, right=%d\n", x, y, left, right);
+				MouseEvent mouseEvent;
+				gerCursorPos(mouseEvent.xPos, mouseEvent.yPos);
+				mouseEvent.keycode = hitButton(mouseEvent.xPos, mouseEvent.yPos);
+				mouseEvent.bnLeft = left;
+				mouseEvent.bnRight = right;
+				if (!(_lastMouseEvent.bnLeft || _lastMouseEvent.bnRight))
+				{
+					if (left || right)
+					{
+						_mouseEvent = mouseEvent;
+					}
+				}
+				processMouseEvent(mouseEvent);
+				_lastMouseEvent = mouseEvent;
+			}
+			else
+			{
+				//
+			}
 		}
 		else
 		{
@@ -109,28 +123,53 @@ void MouseListener::run()
 
 Keycode MouseListener::hitButton(int p_x, int p_y)
 {
-	Layout layout = LAYOUTS[_modeTouchpad];
-	//int indexRow = p_y >
-	printf("x: %i\n", (int)(p_x * koefMiceHor));
-	printf("y: %i\n", (int)(p_y * koefMiceVert));
-	return KEY_1;
-}
-
-void MouseListener::processMouseEvent(const MouseEvent &p_mouseEvent)
-{
-	LAYOUTS; // boris here
-
-	if (_mouseEvent.keycode != p_mouseEvent.keycode)
-	{
-		// mouse moving detected
-	}
-
 	Layout layout = LAYOUTS[_layoutIndex];
-
 	int
 		buttonWUnit(CONST_WIDTH / layout.width),
 		buttonHUnit(CONST_HEIGHT / layout.height)
 	;
-	//
-	_mouseEvent = p_mouseEvent;
+	//int indexRow = p_y >
+	printf("x: %i\n", (int)(p_x * koefMiceHor));
+	printf("y: %i\n", (int)(p_y * koefMiceVert));
+	return KEY_A;
+}
+
+void MouseListener::processMouseEvent(const MouseEvent &p_mouseEvent)
+{
+	if (_mouseEvent.keycode == KEY_MOUSE_AREA)
+	{
+		// boris here 1: Связать BackEnd с сигналом layoutChanged(), отрисовка экранной клавиатуры по конфе (layout.h)
+		// boris here 2: добавить в проект эмулятор клавиатуры (генерация событий)
+		// Реализация эмулятора мыши возможна только при взаимодействии через тачпад (и, соответственно, наличии реализации перехвата реальных координат не через XOrg, а через устройство)
+	}
+	else
+	{
+		if (!p_mouseEvent.bnLeft) // mouse button released
+		{
+			if (_mouseEvent.keycode == p_mouseEvent.keycode)
+			{
+				emit emulateKB(p_mouseEvent.keycode);
+			}
+			else // mouse moving detected
+			{
+				if (_layoutIndex == LAYOUT_KB || _layoutIndex == LAYOUT_NUMPAD)
+				{
+					switchLayout(LAYOUT_MICE);
+					_mouseEvent = p_mouseEvent;
+					_mouseEvent.keycode = KEY_MOUSE_AREA;
+					_lastMouseEvent = _mouseEvent;
+					emit layoutChanged(_layoutIndex = LAYOUT_MICE);
+				}
+				// else ignoring
+			}
+		}
+	}
+
+	if (p_mouseEvent.bnLeft && !_mouseEvent.bnLeft) // mouse button pressed
+		_mouseEvent = p_mouseEvent;
+}
+
+void MouseListener::switchLayout(LayoutIndex p_index)
+{
+	_mouseEvent = MouseEvent();
 }

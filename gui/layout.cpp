@@ -1,7 +1,6 @@
 #include "layout.h"
 
 Layout layNormal {
-	"n",
 	"Normal",
 	2, // width
 	2, // height
@@ -10,10 +9,10 @@ Layout layNormal {
 			1, // height
 			{ // cells
 				{
-					{"a", "A"},
+					{KEY_A, "A"},
 				},
 				{
-					{"b", "B"}
+					{KEY_B, "B"}
 				}
 			}
 		},
@@ -21,10 +20,10 @@ Layout layNormal {
 			1, // height
 			{ // cells
 				{
-					{"c", "C"},
+					{KEY_C, "C"},
 				},
 				{
-					{"d", "D"}
+					{KEY_D, "D"}
 				}
 			}
 		}
@@ -32,20 +31,15 @@ Layout layNormal {
 };
 
 Layout layMice = {
-	"a",
-	"Addon",
+	"TouchPad",
 	2, // width
-	2, // height
+	4, // height
 	{ // buttons
 		{ // row 0
-			1, // height
+			3, // height
 			{ // cells
 				{
-					{"a", "A"},
-					{"a2", "A2"},
-				},
-				{
-					{"b", "B"}
+					{KEY_MOUSE_AREA, "MA"}
 				}
 			}
 		},
@@ -53,10 +47,10 @@ Layout layMice = {
 			1, // height
 			{ // cells
 				{
-					{"c", "C"},
+					{KEY_MOUSE_LB, "LB"},
 				},
 				{
-					{"d", "D"}
+					{KEY_MOUSE_RB, "RB"}
 				}
 			}
 		}
@@ -64,7 +58,6 @@ Layout layMice = {
 };
 
 Layout layNumPad = {
-	"num",
 	"NumPad",
 	2, // width
 	2, // height
@@ -73,11 +66,11 @@ Layout layNumPad = {
 			1, // height
 			{ // cells
 				{
-					{"a", "A"},
-					{"a2", "A2"},
+					{KEY_A, "A"},
+					{KEY_A2, "A2"},
 				},
 				{
-					{"b", "B"}
+					{KEY_B, "B"}
 				}
 			}
 		},
@@ -85,10 +78,10 @@ Layout layNumPad = {
 			1, // height
 			{ // cells
 				{
-					{"c", "C"},
+					{KEY_C, "C"},
 				},
 				{
-					{"d", "D"}
+					{KEY_D, "D"}
 				}
 			}
 		}
@@ -96,7 +89,6 @@ Layout layNumPad = {
 };
 
 Layout layOpacity = {
-	"o",
 	"Opacity",
 	2, // width
 	2, // height
@@ -105,11 +97,11 @@ Layout layOpacity = {
 			1, // height
 			{ // cells
 				{
-					{"a", "A"},
-					{"a2", "A2"},
+					{KEY_A, "A"},
+					{KEY_A2, "A2"},
 				},
 				{
-					{"b", "B"}
+					{KEY_B, "B"}
 				}
 			}
 		},
@@ -117,10 +109,10 @@ Layout layOpacity = {
 			1, // height
 			{ // cells
 				{
-					{"c", "C"},
+					{KEY_C, "C"},
 				},
 				{
-					{"d", "D"}
+					{KEY_D, "D"}
 				}
 			}
 		}

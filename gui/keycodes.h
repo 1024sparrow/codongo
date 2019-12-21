@@ -3,10 +3,15 @@
 
 enum Keycode
 {
-	KEY_1,
-	KEY_2,
-	KEY_3,
-	KEY_4
+	KEY_UNDEFINED,
+	KEY_A,
+	KEY_A2,
+	KEY_B,
+	KEY_C,
+	KEY_D,
+	KEY_MOUSE_AREA,
+	KEY_MOUSE_LB,
+	KEY_MOUSE_RB
 };
 
 #endif // CEYCODES_H
