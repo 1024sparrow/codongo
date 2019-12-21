@@ -25,6 +25,14 @@ struct Layout
 	QList<LayoutRow> buttons;
 };
 
+enum LayoutIndex
+{
+	LAYOUT_KB = 0,
+	LAYOUT_MICE,
+	//LAYOUT_ADDON, // NumPad and Ins/Del/Home/End etc.
+	LAYOUT__COUNT
+};
+
 Layout l1 = {
 	"n",
 	"Normal",
@@ -86,6 +94,6 @@ Layout l2 = {
 		}
 	}
 };
-auto LAYOUTS = QList<Layout>() << l1 << l2;
+Layout LAYOUTS[LAYOUT__COUNT] = {l1, l2}; // 0 - keyboard, 1 - touchpad
 
 #endif // LAYOUT_H

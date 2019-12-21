@@ -11,4 +11,7 @@ HEADERS += \
     backend.h \
     mouselistener.h \
     commonsettings.h \
-    layout.h
+    layout.h \
+    keycodes.h
+
+LIBS += -lX11 -lXext -lXfixes

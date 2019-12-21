@@ -4,6 +4,7 @@
 #include <QThread>
 
 #include "commonsettings.h"
+#include "keycodes.h"
 
 class MouseListener : public QThread
 {
@@ -12,17 +13,20 @@ public:
 	MouseListener(CommonSettings * const p_settings, QObject *p_parent = 0);
 	void run() override;
 private:
-	struct State{
+	struct MouseEvent{
 		int xPos;
 		int yPos;
+		int keycode;
 		bool bnLeft;
 		bool bnRight;
 	};
-	void processMouseEvent(const State &p_state);
+	Keycode hitButton(int p_x, int p_y);
+	void processMouseEvent(const MouseEvent &p_mouseEvent);
 
 private:
 	int _fd;
-	State _state;
+	MouseEvent _mouseEvent;
+	int _modeTouchpad; // 0 or 1
 	CommonSettings * const _settings;
 };
 
