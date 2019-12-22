@@ -5,7 +5,8 @@ SOURCES += \
     mw.cpp \
     backend.cpp \
     mouselistener.cpp \
-    layout.cpp
+    layout.cpp \
+    qmlgenerator.cpp
 
 HEADERS += \
     mw.h \
@@ -13,6 +14,10 @@ HEADERS += \
     mouselistener.h \
     commonsettings.h \
     layout.h \
-    keycodes.h
+    keycodes.h \
+    qmlgenerator.h
 
 LIBS += -lX11 -lXext -lXfixes
+
+RESOURCES += \
+	qmltemplateres.qrc
