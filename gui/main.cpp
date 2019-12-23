@@ -11,11 +11,11 @@ int main(int argc, char *argv[])
 
 	QApplication app(argc, argv);//
 
-	QmlGenerator qmlGen;
-	if (!qmlGen.generate())
-	{
-		return 1;
-	}
+//	QmlGenerator qmlGen; // boris commented
+//	if (!qmlGen.generate())
+//	{
+//		return 1;
+//	}
 
 //	QApplication app(argc, argv);
 

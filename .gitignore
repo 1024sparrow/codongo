@@ -4,5 +4,4 @@
 moc_*
 qrc_*
 Makefile
-gui/conf2/
 gui/.qmake.stash
