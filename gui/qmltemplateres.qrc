@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qmltemplate/Botton.qml</file>
+        <file>qmltemplate/util.js</file>
+    </qresource>
+</RCC>

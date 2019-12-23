@@ -31,3 +31,4 @@ ApplicationWindow {
 		anchors.fill: parent
 	}
 
+}
