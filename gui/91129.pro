@@ -15,7 +15,8 @@ HEADERS += \
     commonsettings.h \
     layout.h \
     keycodes.h \
-    qmlgenerator.h
+    qmlgenerator.h \
+    screenspec.h
 
 LIBS += -lX11 -lXext -lXfixes
 

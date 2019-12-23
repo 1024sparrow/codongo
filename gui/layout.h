@@ -11,10 +11,17 @@ struct LayoutCell
 	QString title; // to display
 };
 
+struct LayoutCol // column in row
+{
+	int width;
+	QList<LayoutCell> cells;
+};
+
 struct LayoutRow
 {
 	int height;
-	QList<QList<LayoutCell> > cells; // in column
+	//QList<QList<LayoutCell> > cells; // in column
+	QList<LayoutCol> columns;
 };
 
 struct Layout

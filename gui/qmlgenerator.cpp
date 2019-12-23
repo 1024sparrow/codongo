@@ -1,5 +1,6 @@
 #include "qmlgenerator.h"
 #include "layout.h"
+#include "screenspec.h"
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
@@ -91,8 +92,51 @@ import "util.js" as Util
 Rectangle {
 	id: root
 	color: "#80000000"
-
-}
+)";
+			/*
+	Botton {
+		text: "Boris"
+		x: 500
+		y: 500
+		width: 500
+		height: 500
+	}
+			*/
+			const double heightKoef = CONST_HEIGHT / layout.height;
+			const double widthKoef = CONST_WIDTH / layout.width;
+			int xCell{0}, yRow{0}, yCell, wCell, hRow, hCell;
+			for (LayoutRow row : layout.buttons)
+			{
+				xCell = 0;
+				hRow = heightKoef * row.height;
+				for (LayoutCol col : row.columns)
+				{
+					wCell = widthKoef * col.width;
+					if (!col.cells.count())
+					{
+						fprintf(stderr, "incorrect empty set of buttons in columns\n");
+						return false;
+					}
+					hCell = hRow / col.cells.count();
+					yCell = yRow;
+					for (LayoutCell cell : col.cells)
+					{
+						tsLayout << R"(
+	Botton {
+		text: ")" << cell.title << R"("
+		x: )" << xCell << R"(
+		y: )" << yCell << R"(
+		width: )" << wCell << R"(
+		height: )" << hCell << R"(
+	}
+)";
+						yCell += hCell;
+					}
+					xCell += wCell;
+				}
+				yRow += hRow;
+			}
+			tsLayout << R"(}
 )";
 		}
 		fileLayout.close();

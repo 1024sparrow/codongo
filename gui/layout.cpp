@@ -9,10 +9,16 @@ Layout layNormal {
 			1, // height
 			{ // cells
 				{
-					{KEY_A, "A"},
+					1,
+					{
+						{KEY_A, "A"},
+					}
 				},
 				{
-					{KEY_B, "B"}
+					1,
+					{
+						{KEY_B, "B"}
+					}
 				}
 			}
 		},
@@ -20,10 +26,16 @@ Layout layNormal {
 			1, // height
 			{ // cells
 				{
-					{KEY_C, "C"},
+					1,
+					{
+						{KEY_C, "C"},
+					}
 				},
 				{
-					{KEY_D, "D"}
+					1,
+					{
+						{KEY_D, "D"}
+					}
 				}
 			}
 		}
@@ -39,7 +51,10 @@ Layout layMice = {
 			3, // height
 			{ // cells
 				{
-					{KEY_MOUSE_AREA, "MA"}
+					1,
+					{
+						{KEY_MOUSE_AREA, "MA"}
+					}
 				}
 			}
 		},
@@ -47,10 +62,16 @@ Layout layMice = {
 			1, // height
 			{ // cells
 				{
-					{KEY_MOUSE_LB, "LB"},
+					1,
+					{
+						{KEY_MOUSE_LB, "LB"}
+					}
 				},
 				{
-					{KEY_MOUSE_RB, "RB"}
+					1,
+					{
+						{KEY_MOUSE_RB, "RB"}
+					}
 				}
 			}
 		}
@@ -66,11 +87,17 @@ Layout layNumPad = {
 			1, // height
 			{ // cells
 				{
-					{KEY_A, "A"},
-					{KEY_A2, "A2"},
+					1,
+					{
+						{KEY_A, "A"},
+						{KEY_A2, "A2"}
+					}
 				},
 				{
-					{KEY_B, "B"}
+					1,
+					{
+						{KEY_B, "B"}
+					}
 				}
 			}
 		},
@@ -78,10 +105,16 @@ Layout layNumPad = {
 			1, // height
 			{ // cells
 				{
-					{KEY_C, "C"},
+					1,
+					{
+						{KEY_C, "C"}
+					}
 				},
 				{
-					{KEY_D, "D"}
+					1,
+					{
+						{KEY_D, "D"}
+					}
 				}
 			}
 		}
@@ -97,11 +130,17 @@ Layout layOpacity = {
 			1, // height
 			{ // cells
 				{
-					{KEY_A, "A"},
-					{KEY_A2, "A2"},
+					1,
+					{
+						{KEY_A, "A"},
+						{KEY_A2, "A2"}
+					}
 				},
 				{
-					{KEY_B, "B"}
+					1,
+					{
+						{KEY_B, "B"}
+					}
 				}
 			}
 		},
@@ -109,10 +148,16 @@ Layout layOpacity = {
 			1, // height
 			{ // cells
 				{
-					{KEY_C, "C"},
+					1,
+					{
+						{KEY_C, "C"}
+					}
 				},
 				{
-					{KEY_D, "D"}
+					1,
+					{
+						{KEY_D, "D"}
+					}
 				}
 			}
 		}

@@ -1,4 +1,5 @@
 #include "mouselistener.h"
+#include "screenspec.h"
 
 #include <QDebug>
 
@@ -19,9 +20,6 @@
 #include <X11/extensions/Xrender.h>
 #include <X11/extensions/shape.h>
 
-// 1280x1024
-#define CONST_WIDTH 1280 // ширина экрана
-#define CONST_HEIGHT 1024 // высота экрана
 //#define CONST_MARGIN 64 // ширина края, распознаваемая в жестах как край экрана
 //#define CONST_MODSEL_HEIGHT 64 // высота переключателя режимов
 
