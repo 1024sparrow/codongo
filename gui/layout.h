@@ -35,9 +35,9 @@ struct Layout
 enum LayoutIndex
 {
 	LAYOUT_KB = 0,
-	LAYOUT_MICE,
-	LAYOUT_NUMPAD, // NumPad and Ins/Del/Home/End etc.
-	LAYOUT_OPACITY,
+	//LAYOUT_MICE,
+	//LAYOUT_NUMPAD, // NumPad and Ins/Del/Home/End etc.
+	//LAYOUT_OPACITY,
 	LAYOUT__COUNT
 };
 

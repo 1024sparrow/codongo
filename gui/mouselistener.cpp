@@ -135,7 +135,8 @@ Keycode MouseListener::hitButton(int p_x, int p_y)
 
 void MouseListener::processMouseEvent(const MouseEvent &p_mouseEvent)
 {
-	emit layoutChanged(_layoutIndex = LAYOUT_MICE);//
+	/* boris commented
+	emit layoutChanged(_layoutIndex = LAYOUT_MICE);
 	if (_mouseEvent.keycode == KEY_MOUSE_AREA)
 	{
 		// boris here 1: Связать BackEnd с сигналом layoutChanged(), отрисовка экранной клавиатуры по конфе (layout.h)
@@ -169,6 +170,7 @@ void MouseListener::processMouseEvent(const MouseEvent &p_mouseEvent)
 
 	if (p_mouseEvent.bnLeft && !_mouseEvent.bnLeft) // mouse button pressed
 		_mouseEvent = p_mouseEvent;
+	*/
 }
 
 void MouseListener::switchLayout(LayoutIndex p_index)
