@@ -9,6 +9,7 @@ struct LayoutCell
 {
 	Keycode code;
 	QString title; // to display
+	// TODO: CSV to draw image instead of simple text
 };
 
 struct LayoutCol // column in row
@@ -35,7 +36,7 @@ struct Layout
 enum LayoutIndex
 {
 	LAYOUT_KB = 0,
-	LAYOUT_NUMPAD, // NumPad and Ins/Del/Home/End etc. Combined with TouchpadLayout
+//	LAYOUT_NUMPAD, // NumPad and Ins/Del/Home/End etc. Combined with TouchpadLayout
 	//LAYOUT_OPACITY,
 	LAYOUT__COUNT
 };

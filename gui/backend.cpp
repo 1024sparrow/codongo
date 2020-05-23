@@ -7,7 +7,7 @@
 #include <QDebug>
 
 BackEnd::BackEnd(QObject *parent) :
-	QObject(parent)
+	QObject(parent), _layoutIndex{ -1 }
 {
 	{
 		auto *desktopWidget = QApplication::desktop();
@@ -35,8 +35,19 @@ void BackEnd::setUserName(const QString &userName)
 	emit userNameChanged();
 }
 
+int BackEnd::layoutIndex()
+{
+	return _layoutIndex;
+}
+
+void BackEnd::setLayoutIndex(int p_layoutIndex)
+{
+	_layoutIndex = p_layoutIndex;
+}
+
 void BackEnd::onLayoutChanged(int p_layoutIndex)
 {
 	//qDebug() << "qwe:" << p_layoutIndex;
-	Layout layout = LAYOUTS[p_layoutIndex];
+	//Layout layout = LAYOUTS[p_layoutIndex];
+	emit layoutIndexChanged(p_layoutIndex);
 }

@@ -63,6 +63,9 @@ ApplicationWindow {
 
 	BackEnd {
 		id: backend
+		onLayoutIndexChanged: {
+			  console.log('sdfsdfsdfsdfsdf')
+			  }
 	}
 
 )";
@@ -141,7 +144,8 @@ Rectangle {
 		}
 		fileLayout.close();
 	}
-	tsMain << "}";
+	tsMain << R"(
+})";
 	fileMain.close();
 	return true;
 }
